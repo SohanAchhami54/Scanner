@@ -8,6 +8,8 @@ import CardScanner from "./components/CardScanner"
 import ReportSection from "./components/ReportSection"
 import "./App.css"
 
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8000"
+
 function App() {
   const [sessionData, setSessionData] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -19,7 +21,7 @@ function App() {
 
   const fetchSessionData = async () => {
     try {
-      const response = await fetch("http://localhost:8000/session")
+      const response = await fetch(`${apiUrl}/session`)
       if (response.ok) {
         const data = await response.json()
         setSessionData(data)
@@ -41,7 +43,7 @@ function App() {
   const handleReset = async () => {
     try {
       setLoading(true)
-      const response = await fetch("http://localhost:8000/reset", {
+      const response = await fetch(`${apiUrl}/reset`, {
         method: "POST",
       })
       if (response.ok) {

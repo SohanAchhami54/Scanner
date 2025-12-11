@@ -3,6 +3,8 @@
 import { useState } from "react";
 import axios from "axios";
 
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
 function CardScanner({ onSuccess, onError }) {
   const [loading, setLoading] = useState(false);
   const [frontResult, setFrontResult] = useState(null);
@@ -27,7 +29,7 @@ function CardScanner({ onSuccess, onError }) {
       }
 
       const response = await axios.post(
-        "http://localhost:8000/upload/card",
+        `${apiUrl}/upload/card`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

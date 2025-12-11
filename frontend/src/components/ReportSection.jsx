@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
 function ReportSection({ sessionData, onReset, loading }) {
   const [generating, setGenerating] = useState(false);
   const [hasUploads, setHasUploads] = useState(false);
@@ -38,7 +40,7 @@ function ReportSection({ sessionData, onReset, loading }) {
     try {
       setGenerating(true);
       const response = await axios.post(
-        "http://localhost:8000/generate-pdf-selective",
+        `${apiUrl}/generate-pdf-selective`,
         selectedItems,
         {
           responseType: "blob",
@@ -68,7 +70,7 @@ function ReportSection({ sessionData, onReset, loading }) {
   const handleGeneratePDF = async () => {
     try {
       setGenerating(true);
-      const response = await axios.get("http://localhost:8000/generate-pdf", {
+      const response = await axios.get(`${apiUrl}/generate-pdf`, {
         responseType: "blob",
       });
 

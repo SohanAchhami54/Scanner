@@ -2,7 +2,7 @@
 
 [phases.setup]
 # Installs the ZBar library required by the pyzbar Python package
-aptPkgs = ["libzbar0"]
+aptPkgs = ["libzbar0", "zbar-tools", "libzbar-dev"]
 
 [start]
 # Starts the uvicorn server for the backend application

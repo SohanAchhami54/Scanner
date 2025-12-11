@@ -3,6 +3,8 @@
 import { useState } from "react";
 import axios from "axios";
 
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
 function BarcodeScanner({ onSuccess, onError }) {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
@@ -20,7 +22,7 @@ function BarcodeScanner({ onSuccess, onError }) {
       formData.append("file", file);
 
       const response = await axios.post(
-        "http://localhost:8000/upload/barcode",
+        `${apiUrl}/upload/barcode`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
